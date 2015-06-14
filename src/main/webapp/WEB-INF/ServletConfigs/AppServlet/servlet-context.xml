@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+      http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+      http://www.springframework.org/schema/context  
+      http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+      http://www.springframework.org/schema/mvc  
+      http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+
+	<!-- 自动搜索@Controller标注的类 -->
+	<context:component-scan base-package="org.lg.MySpace" >
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
+	</context:component-scan>
+	
+	<!-- 默认的注解映射的支持 -->
+	<mvc:annotation-driven />
+	<!-- 静态资源   目前没使用到
+	<mvc:resources mapping="/resources/**" location="/resources/" />
+  	-->
+  	
+    <!-- 处理Mutipart上传文件 
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="40960000" />
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
+    -->
+    
+	<!-- Resolves view names to protected .ftl resources within the /WEB-INF/views directory -->
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+		<property name="contentType" value="text/html;charset=utf-8" />
+	</bean>
+
+	<!-- 拦截器 -->
+	<import resource="interceptors.xml" />
+</beans>  

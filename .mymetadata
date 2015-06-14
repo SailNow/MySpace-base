@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="MySpace Maven Webapp"
+  id="myeclipse.1434121574203"
+  context-root="/MySpace"
+  j2ee-spec="6.0"
+  archive="MySpace Maven Webapp.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+
