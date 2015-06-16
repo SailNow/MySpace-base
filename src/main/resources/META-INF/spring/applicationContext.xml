@@ -20,6 +20,7 @@
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
+
 	<!-- 异步执行 -->
 	<task:executor id="asyncExecutor" pool-size="10" />
 	<task:annotation-driven executor="asyncExecutor"/>
