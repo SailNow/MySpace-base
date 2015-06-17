@@ -15,11 +15,10 @@
             http://www.springframework.org/schema/task/spring-task.xsd"
 	default-lazy-init="false">
 
-	<!-- 引入jdbc配置文件 -->      
- 	<context:property-placeholder location="classpath:META-INF/jdbc.properties"/>
-	
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
-    destroy-method="close" >
+	<context:property-placeholder location="classpath:META-INF/jdbc.properties"/>
+
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" 
+		destroy-method="close" >
 	    <property name="driverClassName">
 	      <value>${jdbc_driverClassName}</value>
 	    </property>
@@ -66,21 +65,8 @@
 	    </property>
 	</bean>
 	
-	<!-- mybatis文件配置，扫描所有mapper文件 -->
-    <bean id="sqlSessionFactory"
-        class="org.mybatis.spring.SqlSessionFactoryBean"
-        p:dataSource-ref="dataSource"
-        p:configLocation="classpath:META-INF/mybatis/mybatis-config.xml"
-        p:mapperLocations="classpath*:META-INF/mybatis/mapper/*.xml"/><!-- configLocation为mybatis属性 mapperLocations为所有mapper-->
-	
-	<!-- spring与mybatis整合配置，扫描所有dao -->
- 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
-        p:basePackage="org.lg.MySpace.base.dao"
-        p:sqlSessionFactoryBeanName="sqlSessionFactory"/>
-	
-	 <!-- 对数据源进行事务管理 -->
-  	 <bean id="transactionManager"
-        class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-        p:dataSource-ref="dataSource"/>
-	
+	<bean id="jdbcUtils" class="org.lg.MySpace.utils.JDBCUtils">
+		<property name="dateSource" ref="dataSource">
+		</property>
+	</bean>
 </beans>  
