@@ -65,7 +65,7 @@
 	    </property>
 	</bean>
 	
-	<bean id="jdbcUtils" class="org.lg.MySpace.utils.JDBCUtils">
+	<bean id="jdbcUtils" class="org.lg.MySpace.jdbc.BaseDao">
 		<property name="dateSource" ref="dataSource">
 		</property>
 	</bean>
